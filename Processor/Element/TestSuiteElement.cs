@@ -1,20 +1,20 @@
-﻿namespace NUnit.TestResult.Viewer.Processor
+﻿namespace NUnit.TestResult.Viewer.Processor.Element
 {
     using NUnit.TestResult.Viewer.Processor.Enum;
     using NUnit.TestResult.Viewer.Processor.Extension;
-    using NUnit.TestResult.Viewer.Processor.Generics;
+    using NUnit.TestResult.Viewer.Processor.Element.Generics;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
 
-    public class TestSuiteElement : TestResultBaseElement
+    public class TestSuiteElement : TestResultEnumerableBaseElement
     {
         private readonly List<TestCaseElement> testCaseElements;
 
         private readonly List<TestSuiteElement> testSuiteElements;
 
-        public TestSuiteElement(XElement element)
+		internal TestSuiteElement(XElement element)
             : base(element)
         {
             this.TestCaseCount = element.GetAttrValue<int>(Consts.ATTR_NAME_TEST_CASE_COUNT);
@@ -81,15 +81,20 @@
 
         public override IEnumerator<TestResultBaseElement> GetEnumerator()
         {
-            foreach (var testCaseElement in this.testCaseElements)
+			var enumerator = new List<TestResultBaseElement>();
+   
+			foreach (var testCaseElement in this.testCaseElements)
             {
-                yield return testCaseElement;
+				enumerator.Add(testCaseElement);
             }
 
             foreach (var testSuiteElement in this.testSuiteElements)
             {
-                yield return testSuiteElement;
+				enumerator.Add(testSuiteElement);
+				enumerator.AddRange(testSuiteElement);
             }
+
+			return enumerator.GetEnumerator();
         }
     }
 }

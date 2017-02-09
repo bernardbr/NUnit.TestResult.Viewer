@@ -1,4 +1,4 @@
-﻿namespace NUnit.TestResult.Viewer.Processor
+﻿namespace NUnit.TestResult.Viewer.Processor.Element
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,13 @@
     using System.Xml.Linq;
 
     using NUnit.TestResult.Viewer.Processor.Extension;
-    using NUnit.TestResult.Viewer.Processor.Generics;
+    using NUnit.TestResult.Viewer.Processor.Element.Generics;
 
-    public class TestCaseElement : TestResultBaseElement
+    public class TestCaseElement : TestResultEnumerableBaseElement
     {
         private readonly List<TestCaseFailureElement> failures;
 
-        public TestCaseElement(XElement element)
+		internal TestCaseElement(XElement element)
             : base(element)
         {
             this.FullName = element.GetAttrValue<string>(Consts.ATTR_NAME_FULL_NAME);

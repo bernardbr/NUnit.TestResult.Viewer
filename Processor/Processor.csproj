@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NUnit.TestResult.Viewer.Processor</RootNamespace>
     <AssemblyName>NUnit.TestResult.Viewer.Processor</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,13 +44,19 @@
     <Compile Include="Enum\ETestSuiteType.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="Extension\XElementExtension.cs" />
-    <Compile Include="Generics\Consts.cs" />
-    <Compile Include="Generics\TestResultBaseElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCaseElement.cs" />
-    <Compile Include="TestCaseFailureElement.cs" />
-    <Compile Include="TestRunElement.cs" />
-    <Compile Include="TestSuiteElement.cs" />
+    <Compile Include="Element\Generics\Consts.cs" />
+    <Compile Include="Element\Generics\TestResultBaseElement.cs" />
+    <Compile Include="Element\TestCaseElement.cs" />
+    <Compile Include="Element\TestCaseFailureElement.cs" />
+    <Compile Include="Element\TestRunElement.cs" />
+    <Compile Include="Element\TestSuiteElement.cs" />
+    <Compile Include="TestResultProcessor.cs" />
+    <Compile Include="Element\Generics\TestResultEnumerableBaseElement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Element\" />
+    <Folder Include="Element\Generics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
